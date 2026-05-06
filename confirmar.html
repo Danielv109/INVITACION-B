@@ -583,6 +583,80 @@
       line-height: 1.8;
       margin-top: 16px;
     }
+
+    /* Name confirmation screen */
+    .name-confirm {
+      display: none;
+      padding: 24px 20px;
+      background: #f0ebe0;
+      border: 1px solid #d5d0c5;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .name-confirm.show {
+      display: block;
+    }
+
+    .name-confirm p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+
+    .name-confirm .nc-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: #7B8E6B;
+      display: block;
+      margin: 12px 0 20px;
+    }
+
+    .name-confirm .nc-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nc-btn-yes {
+      padding: 14px 20px;
+      background: #8A9E7A;
+      color: #f0ebe0;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .nc-btn-yes:hover {
+      background: #7B8E6B;
+    }
+
+    .nc-btn-no {
+      padding: 12px 20px;
+      background: transparent;
+      color: #999;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid #d5d0c5;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nc-btn-no:hover {
+      border-color: #b85c5c;
+      color: #b85c5c;
+    }
   </style>
 </head>
 
@@ -616,6 +690,17 @@
           <div class="autocomplete-list" id="acList"></div>
         </div>
         <div class="field-error" id="searchError">Selecciona tu nombre de la lista</div>
+      </div>
+
+      <!-- Name confirmation -->
+      <div class="name-confirm" id="nameConfirm">
+        <p>Has seleccionado:</p>
+        <span class="nc-name" id="ncName"></span>
+        <p>¿Deseas continuar con la confirmación?</p>
+        <div class="nc-buttons">
+          <button class="nc-btn-yes" id="ncYes">Sí, deseo continuar</button>
+          <button class="nc-btn-no" id="ncNo">Este no es mi nombre, regresar</button>
+        </div>
       </div>
 
       <!-- Selected guest info -->
@@ -890,6 +975,12 @@
     let selectedInvitado = null;
     let selectedGrupo = [];
     let memberAttendance = {}; // { nombre: 'si'|'no' } // all members of the selected group
+    let pendingInvitado = null; // guest waiting for name confirmation
+
+    const nameConfirm = document.getElementById('nameConfirm');
+    const ncName = document.getElementById('ncName');
+    const ncYes = document.getElementById('ncYes');
+    const ncNo = document.getElementById('ncNo');
 
     // Get group members for a guest
     function getGroupMembers(inv) {
@@ -960,7 +1051,7 @@
       return `${before}<strong style="color:#7B8E6B">${match}</strong>${after}`;
     }
 
-    // Select a guest
+    // Select a guest — show name confirmation first
     function selectGuest(inv) {
       const confirmed = getConfirmed();
 
@@ -970,6 +1061,37 @@
         return;
       }
 
+      // Show name confirmation screen
+      pendingInvitado = inv;
+      searchWrap.style.display = 'none';
+      acList.classList.remove('show');
+      searchError.classList.remove('show');
+
+      // Only show the EXACT name they clicked
+      ncName.textContent = inv.nombre;
+      
+      nameConfirm.classList.add('show');
+    }
+
+    // User confirmed their name — proceed to attendance form
+    ncYes.addEventListener('click', () => {
+      if (!pendingInvitado) return;
+      nameConfirm.classList.remove('show');
+      proceedWithGuest(pendingInvitado);
+      pendingInvitado = null;
+    });
+
+    // User said it's not them — go back to search
+    ncNo.addEventListener('click', () => {
+      pendingInvitado = null;
+      nameConfirm.classList.remove('show');
+      searchWrap.style.display = '';
+      searchInput.value = '';
+      searchInput.focus();
+    });
+
+    // Actually load the attendance form
+    function proceedWithGuest(inv) {
       selectedGrupo = getGroupMembers(inv);
       const pases = selectedGrupo.length;
       selectedInvitado = { ...inv, pases: pases };
