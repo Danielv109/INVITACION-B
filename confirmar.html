@@ -1025,13 +1025,11 @@
 
       results.forEach((inv, i) => {
         const members = getGroupMembers(inv);
-        const pases = members.length;
         const confirmed = isGuestConfirmed(inv);
         const div = document.createElement('div');
         div.className = 'ac-item';
         div.innerHTML = `
       <div class="ac-name">${highlightMatch(inv.nombre, query)}${confirmed ? ' <span style="font-size:10px;color:#8A9E7A;letter-spacing:1px;font-family:Jost,sans-serif;font-weight:300">· CONFIRMADO</span>' : ''}</div>
-      <div class="ac-count">${pases} ${pases === 1 ? 'pase' : 'pases'} de invitación</div>
     `;
         div.addEventListener('click', () => selectGuest(inv));
         acList.appendChild(div);
