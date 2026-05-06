@@ -915,11 +915,11 @@
       return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     }
 
-    // Filter guests (ALL guests, confirmed included)
+    // Filter guests (exclude confirmed, min 4 chars)
     function filterGuests(query) {
-      if (!query.trim()) return [];
+      if (!query.trim() || query.trim().length < 4) return [];
       const q = normalize(query);
-      return INVITADOS.filter(inv => normalize(inv.nombre).includes(q));
+      return INVITADOS.filter(inv => normalize(inv.nombre).includes(q) && !isGuestConfirmed(inv));
     }
 
     // Render autocomplete
