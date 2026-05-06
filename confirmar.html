@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmar Asistencia – Natalia & Daniel</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      background: #e8e2d5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 16px;
+      font-family: 'Jost', sans-serif;
+    }
+
+    .card {
+      background: #faf8f4;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e0dbd0;
+    }
+
+    /* Header */
+    .form-header {
+      background: linear-gradient(170deg, #8A9E7A, #7B8E6B);
+      padding: 48px 36px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .form-header::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
+
+    .form-header .script {
+      font-family: 'Great Vibes', cursive;
+      color: #f0ebe0;
+      font-size: 36px;
+      display: block;
+    }
+
+    .form-header .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: rgba(240, 235, 224, 0.6);
+      font-size: 15px;
+      margin-top: 8px;
+      display: block;
+    }
+
+    .form-header .date-line {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: rgba(240, 235, 224, 0.4);
+      margin-top: 20px;
+      display: block;
+    }
+
+    /* Form body */
+    .form-body {
+      padding: 36px 32px 40px
+    }
+
+    .form-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #666;
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    /* Field groups */
+    .field-group {
+      margin-bottom: 28px;
+      position: relative
+    }
+
+    .field-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #999;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .field-required {
+      color: #b85c5c;
+      margin-left: 2px
+    }
+
+    /* Search input */
+    .search-wrap {
+      position: relative
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 16px 14px 42px;
+      border: 1px solid #d5d0c5;
+      background: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #3b3b3b;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .search-input:focus {
+      border-color: #8A9E7A
+    }
+
+    .search-input::placeholder {
+      color: #bbb;
+      font-style: italic
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #bbb;
+      pointer-events: none;
+    }
+
+    /* Autocomplete dropdown */
+    .autocomplete-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #d5d0c5;
+      border-top: none;
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .autocomplete-list.show {
+      display: block
+    }
+
+    .ac-item {
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid #f0ebe0;
+    }
+
+    .ac-item:last-child {
+      border-bottom: none
+    }
+
+    .ac-item:hover,
+    .ac-item.active {
+      background: #f0ebe0
+    }
+
+    .ac-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: #3b3b3b;
+    }
+
+    .ac-count {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: #999;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .ac-empty {
+      padding: 16px;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: #999;
+      font-size: 15px;
+    }
+
+    /* Selected guest card */
+    .selected-guest {
+      display: none;
+      padding: 20px;
+      background: #f0ebe0;
+      border: 1px solid #d5d0c5;
+      position: relative;
+    }
+
+    .selected-guest.show {
+      display: block
+    }
+
+    .sg-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: #7B8E6B;
+      font-weight: 500;
+    }
+
+    .sg-count {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: #888;
+      letter-spacing: 1.5px;
+      margin-top: 6px;
+    }
+
+    .sg-count span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #8A9E7A;
+      font-weight: 500;
+    }
+
+    .sg-change {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8A9E7A;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .sg-badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 12px;
+      background: #8A9E7A;
+      color: #f0ebe0;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Attendance radio */
+    .attendance-options {
+      display: flex;
+      gap: 12px
+    }
+
+    .att-option {
+      flex: 1;
+      position: relative;
+    }
+
+    .att-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none
+    }
+
+    .att-option label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 12px;
+      border: 1px solid #d5d0c5;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: #fff;
+      text-align: center;
+    }
+
+    .att-option label .att-icon {
+      font-size: 24px;
+      transition: transform 0.3s
+    }
+
+    .att-option label .att-text {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .att-option input:checked+label {
+      border-color: #8A9E7A;
+      background: #f0ebe0;
+    }
+
+    .att-option input:checked+label .att-text {
+      color: #7B8E6B;
+      font-weight: 400
+    }
+
+    .att-option input:checked+label .att-icon {
+      transform: scale(1.15)
+    }
+
+    /* Yes green, No red-ish */
+    .att-option.yes input:checked+label {
+      border-color: #8A9E7A;
+      background: #eef3ea
+    }
+
+    .att-option.no input:checked+label {
+      border-color: #b85c5c;
+      background: #f8efef
+    }
+
+    .att-option.no input:checked+label .att-text {
+      color: #b85c5c
+    }
+
+    /* Comment */
+    .comment-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #d5d0c5;
+      background: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: #3b3b3b;
+      outline: none;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.3s;
+    }
+
+    .comment-input:focus {
+      border-color: #8A9E7A
+    }
+
+    .comment-input::placeholder {
+      color: #bbb;
+      font-style: italic
+    }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: #8A9E7A;
+      color: #f0ebe0;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      background: #7B8E6B
+    }
+
+    .submit-btn:disabled {
+      background: #c5bfb0;
+      cursor: not-allowed
+    }
+
+    /* Error */
+    .field-error {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      color: #b85c5c;
+      margin-top: 6px;
+      display: none;
+      letter-spacing: 0.5px;
+    }
+
+    .field-error.show {
+      display: block
+    }
+
+    /* ── MEMBER TOGGLES ── */
+    .member-list {
+      display: none;
+      margin-top: 0;
+    }
+
+    .member-list.show {
+      display: block;
+      margin-top: 24px;
+    }
+
+    .member-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e8e2d5;
+    }
+
+    .member-row:last-child {
+      border-bottom: none;
+    }
+
+    .member-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #3b3b3b;
+      font-weight: 500;
+    }
+
+    .member-toggle {
+      display: flex;
+      gap: 0;
+      border: 1px solid #c5bfb0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .member-toggle button {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: #999;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .member-toggle button.active-yes {
+      background: #8A9E7A;
+      color: #fff;
+    }
+
+    .member-toggle button.active-no {
+      background: #b85c5c;
+      color: #fff;
+    }
+
+    /* Success screen */
+    .success-screen {
+      display: none;
+      padding: 48px 36px;
+      text-align: center;
+    }
+
+    .success-screen.show {
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #eef3ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      border: 2px solid #8A9E7A;
+    }
+
+    .success-screen .script {
+      font-family: 'Great Vibes', cursive;
+      color: #7B8E6B;
+      font-size: 36px;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .success-screen p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    .success-detail {
+      margin-top: 24px;
+      padding: 20px;
+      background: #f0ebe0;
+      width: 100%;
+      text-align: left;
+    }
+
+    .success-detail .sd-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd8ce;
+    }
+
+    .success-detail .sd-row:last-child {
+      border-bottom: none
+    }
+
+    .sd-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #999
+    }
+
+    .sd-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: #3b3b3b;
+      text-align: right
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 28px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8A9E7A;
+      text-decoration: none;
+      border-bottom: 1px solid #8A9E7A;
+      padding-bottom: 2px;
+    }
+
+    /* Already confirmed */
+    .already-confirmed {
+      display: none;
+      padding: 40px 36px;
+      text-align: center;
+    }
+
+    .already-confirmed.show {
+      display: block
+    }
+
+    .already-confirmed p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #666;
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+
+    <!-- Header -->
+    <div class="form-header">
+      <span class="script">Confirmación de Asistencia</span>
+      <span class="subtitle">Natalia &amp; Daniel</span>
+      <span class="date-line">17 · 10 · 2026</span>
+    </div>
+
+    <!-- Form -->
+    <div class="form-body" id="formBody">
+      <p class="form-intro">
+        Por favor busca tu nombre en la lista y confirma tu asistencia a nuestra boda.
+      </p>
+
+      <!-- Guest search -->
+      <div class="field-group">
+        <label class="field-label">Busca tu nombre <span class="field-required">*</span></label>
+        <div class="search-wrap" id="searchWrap">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" class="search-input" id="guestSearch" placeholder="Escribe tu nombre..."
+            autocomplete="off">
+          <div class="autocomplete-list" id="acList"></div>
+        </div>
+        <div class="field-error" id="searchError">Selecciona tu nombre de la lista</div>
+      </div>
+
+      <!-- Selected guest info -->
+      <div class="selected-guest" id="selectedGuest">
+        <button class="sg-change" id="changeGuest">Cambiar</button>
+        <div class="sg-name" id="sgName"></div>
+        <div class="sg-count">Pases de invitación: <span id="sgCount"></span></div>
+        <div class="sg-badge" id="sgBadge"></div>
+      </div>
+
+      <!-- Per-member attendance (for groups) -->
+      <div class="member-list" id="memberList">
+        <label class="field-label">¿Quiénes asistirán? <span class="field-required">*</span></label>
+        <div id="memberRows"></div>
+      </div>
+
+      <!-- Attendance (for individuals) -->
+      <div class="field-group" id="attendanceGroup" style="display:none">
+        <label class="field-label">¿Confirmas tu asistencia? <span class="field-required">*</span></label>
+        <div class="attendance-options">
+          <div class="att-option yes">
+            <input type="radio" name="attendance" id="attYes" value="si">
+            <label for="attYes">
+              <span class="att-text">¡Sí, asistiré!</span>
+            </label>
+          </div>
+          <div class="att-option no">
+            <input type="radio" name="attendance" id="attNo" value="no">
+            <label for="attNo">
+              <span class="att-text">No podré asistir</span>
+            </label>
+          </div>
+        </div>
+        <div class="field-error" id="attError">Selecciona una opción</div>
+      </div>
+
+      <!-- Comment -->
+      <div class="field-group" id="commentGroup" style="display:none">
+        <label class="field-label">Mensaje para los novios <span
+            style="color:#bbb;font-size:10px;letter-spacing:1px">(opcional)</span></label>
+        <textarea class="comment-input" id="commentInput"
+          placeholder="Escribe un mensaje o alguna nota especial..."></textarea>
+      </div>
+
+      <!-- Submit -->
+      <button class="submit-btn" id="submitBtn" style="display:none" disabled>Enviar Confirmación</button>
+      <a href="invitacion.html" style="display:block;text-align:center;margin-top:20px;font-family:'Jost',sans-serif;font-weight:300;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8A9E7A;text-decoration:none;border-bottom:1px solid #8A9E7A;padding-bottom:2px;width:fit-content;margin-left:auto;margin-right:auto;">← Volver a la invitación</a>
+    </div>
+
+    <!-- Success -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A9E7A" stroke-width="2"
+          stroke-linecap="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+      <span class="script">¡Gracias!</span>
+      <p id="successMsg"></p>
+      <div class="success-detail" id="successDetail"></div>
+      <a href="invitacion.html" class="back-link">← Volver a la invitación</a>
+    </div>
+
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════
+    // BASE DE DATOS DE INVITADOS
+    // Edita esta lista con los nombres y cantidad de pases.
+    // ═══════════════════════════════════════════════════════
+    // ═══════════════════════════════════════════════════════
+    // CONFIGURACIÓN — Pega tu URL de Google Sheets aquí
+    // ═══════════════════════════════════════════════════════
+    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw_eegUhxNmHH0jdLh52iDqmYoXQJxu7jzN5_F7hBWJmGWpfoFU0Bdijm1Y8lVpkQvFhA/exec';
+    // Ejemplo: 'https://script.google.com/macros/s/AKfyc.../exec'
+
+    const INVITADOS = [
+      // ══════════════════════════════════
+      // GRUPOS (parejas / familias)
+      // ══════════════════════════════════
+      { nombre: "Alejandro Villarreal Martínez", grupo: "g1" },
+      { nombre: "Silvia Alicia Soto Guerrero", grupo: "g1" },
+
+      { nombre: "Jorge Villarreal", grupo: "g2" },
+      { nombre: "Rodrigo Villarreal", grupo: "g2" },
+      { nombre: "Pablo Villarreal", grupo: "g2" },
+      { nombre: "Cynthia De la Parra", grupo: "g2" },
+
+      { nombre: "Carlos Villarreal", grupo: "g3" },
+      { nombre: "Sharell Sepúlveda", grupo: "g3" },
+
+      { nombre: "Camila Suarez", grupo: "g4" },
+      { nombre: "Juan Carlos", grupo: "g4" },
+
+      { nombre: "Vanessa Suarez", grupo: "g5" },
+      { nombre: "Isaac", grupo: "g5" },
+
+      { nombre: "Carmen Soto", grupo: "g6" },
+      { nombre: "Karla Soto", grupo: "g6" },
+
+      { nombre: "Claudia Soto", grupo: "g7" },
+      { nombre: "Carlos Soto", grupo: "g7" },
+
+      { nombre: "Carlos Soto Guerrero" },
+
+      { nombre: "Gabriela Soto" },
+
+      { nombre: "Gerardo A. Guerrero", grupo: "g10" },
+      { nombre: "Gloria Patricia Tinoco", grupo: "g10" },
+
+      { nombre: "Juan Francisco Castro", grupo: "g11" },
+      { nombre: "María Guadalupe Gutierrez", grupo: "g11" },
+
+      { nombre: "Juan Manuel Medina", grupo: "g12" },
+      { nombre: "Paula A. Arias", grupo: "g12" },
+      { nombre: "Ana Sarahí Medina", grupo: "g12" },
+
+      { nombre: "Natalia Medina", grupo: "g13" },
+      { nombre: "Timoteo", grupo: "g13" },
+
+      { nombre: "Juan Camacho", grupo: "g14" },
+      { nombre: "Mónica Lara", grupo: "g14" },
+
+      { nombre: "Pamela Medina", grupo: "g15" },
+      { nombre: "Bryan A. Lira", grupo: "g15" },
+
+      { nombre: "Orlando Aldama", grupo: "g16" },
+      { nombre: "Allison Esparza", grupo: "g16" },
+
+      { nombre: "Alfonso Fernández", grupo: "g17" },
+      { nombre: "Carolina", grupo: "g17" },
+
+      { nombre: "Poncho Fernández", grupo: "g18" },
+      { nombre: "Clemen Flores", grupo: "g18" },
+
+      { nombre: "Juan Hidalgo", grupo: "g19" },
+      { nombre: "Yareli Ramirez", grupo: "g19" },
+
+      { nombre: "Carmen Martínez", grupo: "g20" },
+      { nombre: "José Villarreal Martínez", grupo: "g20" },
+      { nombre: "Gabriela", grupo: "g20" },
+
+      { nombre: "Eduardo A. Villarreal", grupo: "g21" },
+      { nombre: "Pilar Castillo", grupo: "g21" },
+      { nombre: "Rebeca Villarreal", grupo: "g21" },
+
+      { nombre: "Irma Villarreal", grupo: "g22" },
+      { nombre: "Raquel Villarreal", grupo: "g22" },
+
+      { nombre: "Carlos Maa Lares", grupo: "g23" },
+      { nombre: "Beatríz Bermúdez", grupo: "g23" },
+
+      { nombre: "Cristian A. Vargas", grupo: "g24" },
+      { nombre: "Briana Rendon", grupo: "g24" },
+
+      { nombre: "Fernando Hernández", grupo: "g25" },
+      { nombre: "Lilia Irungaray", grupo: "g25" },
+
+      { nombre: "Dámaris Gastélum", grupo: "g26" },
+      { nombre: "José Ruben Martos", grupo: "g26" },
+      { nombre: "Josefina Salgado", grupo: "g26" },
+
+      { nombre: "Priscila Martos", grupo: "g27" },
+      { nombre: "Gilberto Luna", grupo: "g27" },
+
+      { nombre: "Gilberto Gastélum", grupo: "g28" },
+      { nombre: "Priscila Zazueta", grupo: "g28" },
+
+      { nombre: "Jesús Antonio Gastélum", grupo: "g29" },
+      { nombre: "Yarely Arce", grupo: "g29" },
+      { nombre: "Ayslinn", grupo: "g29" },
+
+      { nombre: "Zaarhy E. Martos", grupo: "g30" },
+      { nombre: "Enrique Ruelas", grupo: "g30" },
+      { nombre: "Enrique Ruelas Martos", grupo: "g30" },
+      { nombre: "Rebeca Ruelas Martos", grupo: "g30" },
+
+      { nombre: "Sandra Martos", grupo: "g31" },
+      { nombre: "Juan Carlos Pérez", grupo: "g31" },
+
+      { nombre: "Sandra Pérez", grupo: "g32" },
+      { nombre: "Gabriel Cortez", grupo: "g32" },
+
+      { nombre: "Abraham Martos", grupo: "g33" },
+      { nombre: "Liliana Urías", grupo: "g33" },
+      { nombre: "Rumina Martos", grupo: "g33" },
+
+      { nombre: "Abraham Martos Urías", grupo: "g34" },
+      { nombre: "Paulina Montaño", grupo: "g34" },
+
+      { nombre: "Victor Martos", grupo: "g35" },
+      { nombre: "Alejandra Ramírez", grupo: "g35" },
+      { nombre: "Victor Martos Ramírez", grupo: "g35" },
+      { nombre: "Victoria Martos Ramírez", grupo: "g35" },
+
+      { nombre: "Ruben Martos", grupo: "g36" },
+      { nombre: "Elizabeth Lara", grupo: "g36" },
+
+      { nombre: "Paulina García", grupo: "g37" },
+      { nombre: "Santiago", grupo: "g37" },
+
+      { nombre: "Alejandra Gamboa", grupo: "g38" },
+      { nombre: "Héctor", grupo: "g38" },
+
+      { nombre: "Rodolfo Martínez", grupo: "g39" },
+      { nombre: "Mara Becerra", grupo: "g39" },
+      { nombre: "Diego Martínez", grupo: "g39" },
+      { nombre: "Alondra Martínez", grupo: "g39" },
+
+      { nombre: "Beny Becerra", grupo: "g40" },
+      { nombre: "Acompañante Beny", grupo: "g40" },
+
+      { nombre: "Coronado", grupo: "g41" },
+      { nombre: "Esposa Coronado", grupo: "g41" },
+
+      { nombre: "Anestesiologo", grupo: "g42" },
+      { nombre: "Esposa Anestesiologo", grupo: "g42" },
+
+      // ══════════════════════════════════
+      // INDIVIDUALES
+      // ══════════════════════════════════
+      { nombre: "Bernardo Forester" },
+      { nombre: "Sebastián A. de Ávila" },
+      { nombre: "Fernando Barajas" },
+      { nombre: "Marcos Velázquez" },
+      { nombre: "Omar Infante" },
+      { nombre: "Carlos A. González" },
+      { nombre: "Emiliano Sánchez" },
+      { nombre: "Daniel Aurelio Villarreal" },
+      { nombre: "Bruno Díaz" },
+      { nombre: "Karen Chaidez" },
+      { nombre: "Diego Antunez" },
+      { nombre: "Karla Michelle Valdez" },
+      { nombre: "Sara Virginia Pérez" },
+      { nombre: "Ximena Sandoval" },
+      { nombre: "Adriana de la Rosa" },
+      { nombre: "Victoria Gutierrez Santiesteban" },
+      { nombre: "Marlene Vargas" },
+      { nombre: "Isamar Carrillo" },
+      { nombre: "Daniela Larreta" },
+      { nombre: "Marisol Gutierrez" },
+      { nombre: "Grace Díaz Duarte" },
+      { nombre: "Ashly Acuña" },
+      { nombre: "Gabriela Rodríguez" },
+      { nombre: "Danette Baeza" },
+      { nombre: "Alan Ponce" },
+    ];
+
+    // ═══════════════════════════════════════════════════════
+    // LÓGICA DEL FORMULARIO
+    // ═══════════════════════════════════════════════════════
+
+    const searchInput = document.getElementById('guestSearch');
+    const acList = document.getElementById('acList');
+    const searchWrap = document.getElementById('searchWrap');
+    const selectedGuest = document.getElementById('selectedGuest');
+    const sgName = document.getElementById('sgName');
+    const sgCount = document.getElementById('sgCount');
+    const sgBadge = document.getElementById('sgBadge');
+    const changeBtn = document.getElementById('changeGuest');
+    const attendanceGroup = document.getElementById('attendanceGroup');
+    const commentGroup = document.getElementById('commentGroup');
+    const submitBtn = document.getElementById('submitBtn');
+    const searchError = document.getElementById('searchError');
+    const attError = document.getElementById('attError');
+    const formBody = document.getElementById('formBody');
+    const successScreen = document.getElementById('successScreen');
+
+    const memberList = document.getElementById('memberList');
+    const memberRows = document.getElementById('memberRows');
+
+    let selectedInvitado = null;
+    let selectedGrupo = [];
+    let memberAttendance = {}; // { nombre: 'si'|'no' } // all members of the selected group
+
+    // Get group members for a guest
+    function getGroupMembers(inv) {
+      if (!inv.grupo) return [inv];
+      return INVITADOS.filter(i => i.grupo === inv.grupo);
+    }
+
+    // Get confirmed guest names from localStorage
+    function getConfirmed() {
+      return JSON.parse(localStorage.getItem('boda_confirmations') || '{}');
+    }
+
+    // Check if a guest (or their group) is confirmed
+    function isGuestConfirmed(inv) {
+      const confirmed = getConfirmed();
+      if (!inv.grupo) return !!confirmed[inv.nombre];
+      const members = getGroupMembers(inv);
+      return members.some(m => confirmed[m.nombre]);
+    }
+
+    // Normalize text for search
+    function normalize(str) {
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    // Filter guests (ALL guests, confirmed included)
+    function filterGuests(query) {
+      if (!query.trim()) return [];
+      const q = normalize(query);
+      return INVITADOS.filter(inv => normalize(inv.nombre).includes(q));
+    }
+
+    // Render autocomplete
+    function renderAC(results, query) {
+      acList.innerHTML = '';
+      if (results.length === 0 && query.trim()) {
+        acList.innerHTML = '<div class="ac-empty">No se encontró ningún invitado con ese nombre</div>';
+        acList.classList.add('show');
+        return;
+      }
+      if (results.length === 0) { acList.classList.remove('show'); return; }
+
+      results.forEach((inv, i) => {
+        const members = getGroupMembers(inv);
+        const pases = members.length;
+        const confirmed = isGuestConfirmed(inv);
+        const div = document.createElement('div');
+        div.className = 'ac-item';
+        div.innerHTML = `
+      <div class="ac-name">${highlightMatch(inv.nombre, query)}${confirmed ? ' <span style="font-size:10px;color:#8A9E7A;letter-spacing:1px;font-family:Jost,sans-serif;font-weight:300">· CONFIRMADO</span>' : ''}</div>
+      <div class="ac-count">${pases} ${pases === 1 ? 'pase' : 'pases'} de invitación</div>
+    `;
+        div.addEventListener('click', () => selectGuest(inv));
+        acList.appendChild(div);
+      });
+      acList.classList.add('show');
+    }
+
+    // Highlight matching text
+    function highlightMatch(name, query) {
+      const q = normalize(query);
+      const nName = normalize(name);
+      const idx = nName.indexOf(q);
+      if (idx === -1) return name;
+      const before = name.substring(0, idx);
+      const match = name.substring(idx, idx + query.length);
+      const after = name.substring(idx + query.length);
+      return `${before}<strong style="color:#7B8E6B">${match}</strong>${after}`;
+    }
+
+    // Select a guest
+    function selectGuest(inv) {
+      const confirmed = getConfirmed();
+
+      // Check if already confirmed → show read-only view
+      if (isGuestConfirmed(inv)) {
+        showAlreadyConfirmed(inv, confirmed[inv.nombre] || confirmed[getGroupMembers(inv)[0].nombre]);
+        return;
+      }
+
+      selectedGrupo = getGroupMembers(inv);
+      const pases = selectedGrupo.length;
+      selectedInvitado = { ...inv, pases: pases };
+      memberAttendance = {};
+
+      searchWrap.style.display = 'none';
+      acList.classList.remove('show');
+      searchError.classList.remove('show');
+
+      // Show all group member names
+      if (selectedGrupo.length > 1) {
+        sgName.innerHTML = selectedGrupo.map(m => m.nombre).join('<br>');
+      } else {
+        sgName.textContent = inv.nombre;
+      }
+      sgCount.textContent = pases;
+      sgBadge.textContent = pases === 1 ? '1 persona' : pases + ' personas';
+      selectedGuest.classList.add('show');
+
+      // For groups: show per-member toggles, hide single attendance
+      if (selectedGrupo.length > 1) {
+        attendanceGroup.style.display = 'none';
+        memberList.classList.add('show');
+        memberRows.innerHTML = '';
+        selectedGrupo.forEach(m => {
+          const row = document.createElement('div');
+          row.className = 'member-row';
+          row.innerHTML = `
+            <span class="member-name">${m.nombre}</span>
+            <div class="member-toggle">
+              <button type="button" data-name="${m.nombre}" data-val="si">Sí</button>
+              <button type="button" data-name="${m.nombre}" data-val="no">No</button>
+            </div>
+          `;
+          row.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const name = btn.dataset.name;
+              const val = btn.dataset.val;
+              memberAttendance[name] = val;
+              // Update active states
+              row.querySelectorAll('button').forEach(b => {
+                b.classList.remove('active-yes', 'active-no');
+              });
+              btn.classList.add(val === 'si' ? 'active-yes' : 'active-no');
+              // Enable submit if all members have responded
+              checkAllMembersAnswered();
+            });
+          });
+          memberRows.appendChild(row);
+        });
+      } else {
+        // Individual: show normal attendance
+        memberList.classList.remove('show');
+        attendanceGroup.style.display = '';
+      }
+
+      commentGroup.style.display = '';
+      submitBtn.style.display = '';
+
+      // Reset
+      document.querySelectorAll('input[name="attendance"]').forEach(r => r.checked = false);
+      document.getElementById('commentInput').value = '';
+      submitBtn.disabled = true;
+    }
+
+    function checkAllMembersAnswered() {
+      const allAnswered = selectedGrupo.every(m => memberAttendance[m.nombre]);
+      submitBtn.disabled = !allAnswered;
+    }
+
+    // Show already confirmed message (read-only)
+    function showAlreadyConfirmed(inv, data) {
+      acList.classList.remove('show');
+      searchInput.value = '';
+      formBody.style.display = 'none';
+
+      const members = getGroupMembers(inv);
+      const confirmed = getConfirmed();
+      const isGroup = members.length > 1;
+
+      let msg, detailHTML;
+
+      if (isGroup) {
+        // Check individual attendance for each member
+        const hasAny = members.some(m => confirmed[m.nombre] && confirmed[m.nombre].individualAttendance === 'si');
+        const hasNone = members.every(m => confirmed[m.nombre] && confirmed[m.nombre].individualAttendance === 'no');
+        if (hasNone) {
+          msg = 'Registramos que no podrán asistir. ¡Los extrañaremos!';
+        } else {
+          msg = 'Su asistencia ya fue confirmada. ¡Los esperamos con mucho cariño!';
+        }
+        detailHTML = members.map(m => {
+          const mData = confirmed[m.nombre];
+          const status = mData && mData.individualAttendance === 'si' ? '✓ Asistirá' : '✗ No asistirá';
+          return `<div class="sd-row"><span class="sd-label">${m.nombre}</span><span class="sd-value">${status}</span></div>`;
+        }).join('');
+      } else {
+        msg = data.attendance === 'si'
+          ? 'Tu asistencia ya fue confirmada. ¡Te esperamos con mucho cariño!'
+          : 'Registramos que no podrás asistir. ¡Te extrañaremos!';
+        detailHTML = `
+        <div class="sd-row"><span class="sd-label">Invitado</span><span class="sd-value">${inv.nombre}</span></div>
+        <div class="sd-row"><span class="sd-label">Asistencia</span><span class="sd-value">${data.attendance === 'si' ? '✓ Confirmado' : '✗ No asistirá'}</span></div>`;
+      }
+      detailHTML += `<div class="sd-row"><span class="sd-label">Pases</span><span class="sd-value">${members.length}</span></div>`;
+      if (data.comment) detailHTML += `<div class="sd-row"><span class="sd-label">Mensaje</span><span class="sd-value">${data.comment}</span></div>`;
+      detailHTML += `<div class="sd-row"><span class="sd-label">Fecha</span><span class="sd-value">${data.date}</span></div>`;
+
+      successScreen.querySelector('.script').textContent = 'Ya confirmaste';
+      document.getElementById('successMsg').innerHTML = msg;
+      document.getElementById('successDetail').innerHTML = detailHTML;
+      successScreen.classList.add('show');
+    }
+
+    // Change guest
+    changeBtn.addEventListener('click', () => {
+      selectedInvitado = null;
+      selectedGrupo = [];
+      memberAttendance = {};
+      searchWrap.style.display = '';
+      searchInput.value = '';
+      searchInput.focus();
+      selectedGuest.classList.remove('show');
+      attendanceGroup.style.display = 'none';
+      memberList.classList.remove('show');
+      commentGroup.style.display = 'none';
+      submitBtn.style.display = 'none';
+    });
+
+    // Search input
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value;
+      const results = filterGuests(q);
+      renderAC(results, q);
+    });
+
+    searchInput.addEventListener('focus', () => {
+      const q = searchInput.value;
+      if (q.trim()) {
+        const results = filterGuests(q);
+        renderAC(results, q);
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchWrap.contains(e.target)) {
+        acList.classList.remove('show');
+      }
+    });
+
+    // Attendance change
+    document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        submitBtn.disabled = false;
+        attError.classList.remove('show');
+      });
+    });
+
+    // Submit
+    submitBtn.addEventListener('click', async () => {
+      // Validate
+      if (!selectedInvitado) { searchError.classList.add('show'); return; }
+
+      const isGroup = selectedGrupo.length > 1;
+      let attendanceValue, attendanceDetail;
+
+      if (isGroup) {
+        // Validate all members answered
+        if (!selectedGrupo.every(m => memberAttendance[m.nombre])) return;
+        const attending = selectedGrupo.filter(m => memberAttendance[m.nombre] === 'si');
+        const notAttending = selectedGrupo.filter(m => memberAttendance[m.nombre] === 'no');
+        attendanceValue = attending.length > 0 ? 'si' : 'no';
+        attendanceDetail = selectedGrupo.map(m => `${m.nombre}: ${memberAttendance[m.nombre] === 'si' ? 'Sí' : 'No'}`).join(', ');
+      } else {
+        const att = document.querySelector('input[name="attendance"]:checked');
+        if (!att) { attError.classList.add('show'); return; }
+        attendanceValue = att.value;
+        attendanceDetail = attendanceValue === 'si' ? 'Sí' : 'No';
+      }
+
+      const comment = document.getElementById('commentInput').value.trim();
+      const allNames = selectedGrupo.map(m => m.nombre).join(', ');
+      const date = new Date().toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' });
+
+      const data = {
+        nombre: allNames,
+        pases: selectedInvitado.pases,
+        attendance: attendanceValue,
+        detail: attendanceDetail,
+        comment: comment,
+        date: date
+      };
+
+      // Save ALL group members to localStorage so they all get blocked
+      const confirmations = JSON.parse(localStorage.getItem('boda_confirmations') || '{}');
+      selectedGrupo.forEach(m => {
+        confirmations[m.nombre] = {
+          ...data,
+          individualAttendance: isGroup ? memberAttendance[m.nombre] : attendanceValue
+        };
+      });
+      localStorage.setItem('boda_confirmations', JSON.stringify(confirmations));
+
+      // Send to Google Sheets
+      if (GOOGLE_SHEETS_URL) {
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+        try {
+          await fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({
+              nombre: data.nombre,
+              pases: data.pases,
+              asistencia: attendanceDetail,
+              comentario: data.comment,
+              fecha: data.date
+            })
+          });
+        } catch (e) { console.warn('Error enviando a Sheets:', e); }
+      }
+
+      // Show success
+      formBody.style.display = 'none';
+
+      let successMsg, detailHTML;
+      if (isGroup) {
+        const attending = selectedGrupo.filter(m => memberAttendance[m.nombre] === 'si');
+        const notAtt = selectedGrupo.filter(m => memberAttendance[m.nombre] === 'no');
+        if (attending.length > 0 && notAtt.length > 0) {
+          successMsg = `¡Gracias por confirmar! Lamentamos que no todos puedan asistir.`;
+        } else if (attending.length > 0) {
+          successMsg = `¡Qué alegría que nos acompañen! Los esperamos con los brazos abiertos.`;
+        } else {
+          successMsg = `Lamentamos que no puedan asistir. ¡Los tendremos presente en nuestro corazón!`;
+        }
+        detailHTML = selectedGrupo.map(m => {
+          const status = memberAttendance[m.nombre] === 'si' ? '✓ Asistirá' : '✗ No asistirá';
+          return `<div class="sd-row"><span class="sd-label">${m.nombre}</span><span class="sd-value">${status}</span></div>`;
+        }).join('');
+      } else {
+        successMsg = attendanceValue === 'si'
+          ? `¡Qué alegría que nos acompañes! Te esperamos con los brazos abiertos.`
+          : `Lamentamos que no puedas asistir. ¡Te tendremos presente en nuestro corazón!`;
+        detailHTML = `<div class="sd-row"><span class="sd-label">Invitado</span><span class="sd-value">${data.nombre}</span></div>
+        <div class="sd-row"><span class="sd-label">Asistencia</span><span class="sd-value">${attendanceDetail}</span></div>`;
+      }
+      detailHTML += `<div class="sd-row"><span class="sd-label">Pases</span><span class="sd-value">${data.pases}</span></div>`;
+      if (comment) detailHTML += `<div class="sd-row"><span class="sd-label">Mensaje</span><span class="sd-value">${comment}</span></div>`;
+      detailHTML += `<div class="sd-row"><span class="sd-label">Fecha</span><span class="sd-value">${data.date}</span></div>`;
+
+      document.getElementById('successMsg').innerHTML = successMsg;
+      document.getElementById('successDetail').innerHTML = detailHTML;
+      successScreen.classList.add('show');
+    });
+
+    // Keyboard navigation for autocomplete
+    let activeIdx = -1;
+    searchInput.addEventListener('keydown', (e) => {
+      const items = acList.querySelectorAll('.ac-item');
+      if (!items.length) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, items.length - 1);
+        items.forEach((it, i) => it.classList.toggle('active', i === activeIdx));
+        items[activeIdx].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = Math.max(activeIdx - 1, 0);
+        items.forEach((it, i) => it.classList.toggle('active', i === activeIdx));
+        items[activeIdx].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeIdx >= 0 && items[activeIdx]) {
+          items[activeIdx].click();
+        }
+      }
+    });
+
+    searchInput.addEventListener('input', () => { activeIdx = -1; });
+  </script>
+</body>
+
+</html>

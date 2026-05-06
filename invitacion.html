@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natalia & Daniel – 17.10.2026</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      background: #e8e2d5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 16px;
+      font-family: 'Jost', sans-serif
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0
+      }
+
+      .card {
+        box-shadow: none !important;
+        max-width: 100%
+      }
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding: 20px 8px;
+      }
+
+      .cover {
+        padding: 60px 28px 50px;
+      }
+
+      .cover .script {
+        font-size: 52px;
+      }
+
+      .cover .phrase {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 32px 24px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .venue-card {
+        padding: 28px 24px 24px;
+      }
+
+      .calendar-section {
+        padding: 32px 24px;
+      }
+
+      .confirm-section {
+        padding: 36px 24px;
+      }
+
+      .closing {
+        padding: 40px 24px;
+      }
+
+      .gift-section .bank-info {
+        padding: 14px;
+      }
+    }
+
+    .card {
+      background: #faf8f4;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e0dbd0;
+    }
+
+    /* ── PORTADA ── */
+    .cover {
+      background: linear-gradient(170deg, #8A9E7A 0%, #7B8E6B 100%);
+      padding: 80px 40px 70px;
+      text-align: center;
+      position: relative;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      pointer-events: none;
+    }
+
+    .cover .ornament-top {
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto 20px;
+      opacity: 0.85;
+    }
+
+    .cover .script {
+      font-family: 'Great Vibes', cursive;
+      color: #f0ebe0;
+      font-size: 66px;
+      line-height: 1.15;
+      display: block;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .cover .phrase {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      line-height: 1.8;
+      color: rgba(240, 235, 224, 0.75);
+      display: block;
+      margin: 28px auto 0;
+      max-width: 300px;
+    }
+
+    .cover .amp {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: rgba(240, 235, 224, 0.5);
+      font-size: 30px;
+      display: block;
+      margin: 6px 0;
+    }
+
+    .cover .date {
+      font-family: 'Cormorant Garamond', serif;
+      color: rgba(240, 235, 224, 0.7);
+      font-size: 14px;
+      letter-spacing: 6px;
+      margin-top: 28px;
+      display: block;
+    }
+
+    /* ── FOTO (removida) ── */
+
+    /* ── FRASE ── */
+    .invite-phrase {
+      background: #f0ebe0;
+      padding: 44px 40px;
+      text-align: center;
+      border-bottom: 1px solid #ddd8ce;
+    }
+
+    .invite-phrase p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 17px;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    /* ── SECCIONES ── */
+    section {
+      padding: 40px 36px;
+      border-bottom: 1px solid #ddd8ce
+    }
+
+    section:last-child {
+      border-bottom: none
+    }
+
+    .section-icon {
+      text-align: center;
+      margin-bottom: 14px;
+      color: #8A9E7A
+    }
+
+    .section-title {
+      font-family: 'Great Vibes', cursive;
+      color: #7B8E6B;
+      font-size: 38px;
+      text-align: center;
+      display: block;
+      margin-bottom: 22px;
+    }
+
+    .label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #999;
+      text-align: center;
+      display: block;
+    }
+
+    .value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: #3b3b3b;
+      text-align: center;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .value.big {
+      font-size: 28px;
+      font-weight: 500;
+      color: #8A9E7A
+    }
+
+    .place-italic {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #777;
+      text-align: center;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .divider {
+      width: 50px;
+      height: 1px;
+      background: #c5bfb0;
+      margin: 20px auto
+    }
+
+    .divider-img {
+      display: block;
+      width: 160px;
+      margin: 24px auto;
+      opacity: 0.7
+    }
+
+    /* ── CALENDARIO ── */
+    .calendar-section {
+      background: linear-gradient(170deg, #8A9E7A, #7B8E6B);
+      padding: 40px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calendar-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/floral_corner.png');
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .calendar-section>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cal-month {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      letter-spacing: 5px;
+      font-size: 11px;
+      color: rgba(240, 235, 224, 0.55);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      max-width: 280px;
+      margin: 0 auto
+    }
+
+    .cal-day-header {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      color: rgba(240, 235, 224, 0.35);
+      text-align: center;
+      padding: 4px 0;
+      letter-spacing: 1px;
+    }
+
+    .cal-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: rgba(240, 235, 224, 0.6);
+      text-align: center;
+      padding: 5px 2px;
+    }
+
+    .cal-day .highlight {
+      background: rgba(255, 255, 255, 0.12);
+      color: #f0ebe0;
+      font-weight: 500;
+      font-size: 15px;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      border: 1px solid rgba(240, 235, 224, 0.35);
+    }
+
+    .cal-year {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      letter-spacing: 8px;
+      font-size: 11px;
+      color: rgba(240, 235, 224, 0.35);
+      margin-top: 18px;
+      display: block;
+    }
+
+    /* ── ITINERARIO ── */
+    .timeline {
+      list-style: none;
+      position: relative;
+      padding-left: 24px
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: #c5bfb0;
+    }
+
+    .timeline li {
+      position: relative;
+      padding: 0 0 24px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px
+    }
+
+    .timeline li:last-child {
+      padding-bottom: 0
+    }
+
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #8A9E7A;
+      border: 1.5px solid #8A9E7A;
+    }
+
+    .tl-time {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: #999;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .tl-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: #3b3b3b;
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* ── VESTIMENTA ── */
+    .dress-block {
+      text-align: center;
+      padding: 8px 0
+    }
+
+    .dress-icon {
+      margin: 14px auto;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      align-items: flex-end
+    }
+
+    .dress-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #777;
+      line-height: 1.7;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    /* ── CONFIRMACIÓN ── */
+    .confirm-section {
+      background: linear-gradient(170deg, #8A9E7A, #7B8E6B);
+      padding: 44px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .confirm-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/floral_corner.png');
+      background-size: 55%;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      opacity: 0.3;
+      transform: scaleX(-1);
+      pointer-events: none;
+    }
+
+    .confirm-section>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .confirm-section .section-title {
+      color: #f0ebe0
+    }
+
+    .confirm-section .label {
+      color: rgba(240, 235, 224, 0.5)
+    }
+
+    .confirm-section p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: rgba(240, 235, 224, 0.75);
+      line-height: 1.8;
+      margin-bottom: 26px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid rgba(201, 168, 76, 0.6);
+      color: #f0ebe0;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1)
+    }
+
+    /* ── RECOMENDACIONES ── */
+    .rec-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 20px
+    }
+
+    .rec-item:last-child {
+      margin-bottom: 0
+    }
+
+    .rec-dot {
+      width: 6px;
+      height: 6px;
+      background: #8A9E7A;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 8px
+    }
+
+    .rec-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: #3b3b3b;
+      line-height: 1.7
+    }
+
+    .rec-text strong {
+      font-weight: 500;
+      color: #7B8E6B;
+      display: block;
+      font-size: 12px;
+      font-family: 'Jost', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    /* ── REGALOS ── */
+    .gift-section {
+      background: #f0ebe0
+    }
+
+    .gift-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px
+    }
+
+    .gift-link {
+      display: block;
+      border: 1px solid #c5bfb0;
+      padding: 14px 20px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8A9E7A;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .gift-link:hover {
+      background: #e8e2d5
+    }
+
+    .bank-info {
+      margin-top: 20px;
+      padding: 18px;
+      background: #faf8f4;
+      border-left: 3px solid #8A9E7A;
+    }
+
+    .bank-info p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.8
+    }
+
+    .bank-info strong {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #7B8E6B
+    }
+
+    /* ── CIERRE ── */
+    .closing {
+      background: linear-gradient(170deg, #8A9E7A, #7B8E6B);
+      padding: 80px 36px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/floral_corner.png');
+      background-size: 55%;
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .closing>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .closing .script {
+      font-family: 'Great Vibes', cursive;
+      color: #f0ebe0;
+      font-size: 58px;
+      display: block;
+      margin-bottom: 22px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .closing p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(240, 235, 224, 0.65);
+      line-height: 1.9;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .closing-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(240, 235, 224, 0.25);
+      margin: 28px auto 20px
+    }
+
+    .closing-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 6px;
+      color: rgba(240, 235, 224, 0.75);
+    }
+
+    /* ── LUGARES ── */
+    .venue-card {
+      text-align: center;
+      padding: 36px 36px 32px;
+      border-bottom: 1px solid #ddd8ce;
+    }
+
+    .venue-card .venue-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #999;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .venue-card .venue-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: #3b3b3b;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .venue-card .venue-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #888;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #8A9E7A;
+      color: #7B8E6B;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    .map-btn:hover {
+      background: #8A9E7A;
+      color: #f0ebe0;
+    }
+
+    .map-btn svg {
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+
+    <!-- PORTADA -->
+    <div class="cover">
+      <span class="script">Natalia</span>
+      <span class="amp">&amp;</span>
+      <span class="script">Daniel</span>
+      <span class="phrase">Nos complace invitarles a la celebración de nuestro matrimonio que se llevará a cabo el
+        día</span>
+      <span class="date">17 · 10 · 2026</span>
+    </div>
+
+
+
+    <!-- LUGARES -->
+    <section class="venue-card" style="border-bottom: 1px solid #ddd8ce;">
+      <span class="section-title">Lugares</span>
+
+      <span class="venue-label">Ceremonia Religiosa</span>
+      <span class="venue-name">Bethel Norte</span>
+      <span class="venue-time">4:00 pm</span>
+      <a href="https://maps.app.goo.gl/d1ADF8Yd9kX6BY6KA" target="_blank" class="map-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Ver ubicación
+      </a>
+
+      <div style="width:50px;height:1px;background:#c5bfb0;margin:28px auto"></div>
+
+      <span class="venue-label">Recepción</span>
+      <span class="venue-name">Real del Arenal</span>
+      <span class="venue-time">A continuación de la ceremonia</span>
+      <a href="https://maps.app.goo.gl/buqfF3Ly8pxm4sg6A" target="_blank" class="map-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Ver ubicación
+      </a>
+    </section>
+
+    <!-- ITINERARIO -->
+    <section>
+      <span class="section-title">Itinerario</span>
+      <ul class="timeline">
+        <li>
+          <div><span class="tl-time">4:00 pm</span><span class="tl-name">Ceremonia Religiosa — Bethel Norte</span></div>
+        </li>
+        <li>
+          <div><span class="tl-time">6:30 pm</span><span class="tl-name"> Coctel de bienvenida — Real del Arenal</span>
+          </div>
+        </li>
+        <li>
+          <div><span class="tl-time">8:00 pm</span><span class="tl-name">Cena</span></div>
+        </li>
+        <li>
+          <div><span class="tl-time">9:00 pm</span><span class="tl-name">Primer baile </span></div>
+        </li>
+        <li>
+          <div><span class="tl-time">9:30 pm</span><span class="tl-name">¡Fiesta!</span></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CALENDARIO -->
+    <div class="calendar-section">
+      <span class="cal-month">Octubre</span>
+      <div class="cal-grid">
+        <div class="cal-day-header">L</div>
+        <div class="cal-day-header">M</div>
+        <div class="cal-day-header">M</div>
+        <div class="cal-day-header">J</div>
+        <div class="cal-day-header">V</div>
+        <div class="cal-day-header">S</div>
+        <div class="cal-day-header">D</div>
+        <div class="cal-day"></div>
+        <div class="cal-day"></div>
+        <div class="cal-day"></div>
+        <div class="cal-day">1</div>
+        <div class="cal-day">2</div>
+        <div class="cal-day">3</div>
+        <div class="cal-day">4</div>
+        <div class="cal-day">5</div>
+        <div class="cal-day">6</div>
+        <div class="cal-day">7</div>
+        <div class="cal-day">8</div>
+        <div class="cal-day">9</div>
+        <div class="cal-day">10</div>
+        <div class="cal-day">11</div>
+        <div class="cal-day">12</div>
+        <div class="cal-day">13</div>
+        <div class="cal-day">14</div>
+        <div class="cal-day">15</div>
+        <div class="cal-day">16</div>
+        <div class="cal-day">
+          <div class="highlight">17</div>
+        </div>
+        <div class="cal-day">18</div>
+        <div class="cal-day">19</div>
+        <div class="cal-day">20</div>
+        <div class="cal-day">21</div>
+        <div class="cal-day">22</div>
+        <div class="cal-day">23</div>
+        <div class="cal-day">24</div>
+        <div class="cal-day">25</div>
+        <div class="cal-day">26</div>
+        <div class="cal-day">27</div>
+        <div class="cal-day">28</div>
+        <div class="cal-day">29</div>
+        <div class="cal-day">30</div>
+        <div class="cal-day">31</div>
+      </div>
+      <span class="cal-year">2 0 2 6</span>
+    </div>
+
+    <!-- VESTIMENTA -->
+    <section class="dress-block">
+      <div class="section-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l-2 4H5l3 3-1 4 5-3 5 3-1-4 3-3h-5z" />
+        </svg>
+      </div>
+      <span class="section-title">Código de Vestimenta</span>
+      <span class="value big">Elegante · Formal</span>
+      <div class="dress-icon">
+        <svg width="28" height="52" viewBox="0 0 28 52" fill="none" stroke="#8A9E7A" stroke-width="1.2"
+          stroke-linecap="round">
+          <ellipse cx="14" cy="7" rx="5" ry="5" />
+          <path d="M8 13 C4 16 2 22 2 28 L6 28 L6 50 L22 50 L22 28 L26 28 C26 22 24 16 20 13" />
+          <path d="M8 13 L6 20 L14 18 L22 20 L20 13" />
+        </svg>
+        <svg width="24" height="52" viewBox="0 0 24 52" fill="none" stroke="#8A9E7A" stroke-width="1.2"
+          stroke-linecap="round">
+          <ellipse cx="12" cy="7" rx="5" ry="5" />
+          <path d="M6 13 C3 15 2 18 2 22 L2 32 L6 32 L6 50 L18 50 L18 32 L22 32 L22 22 C22 18 21 15 18 13" />
+          <line x1="10" y1="14" x2="10" y2="28" />
+          <line x1="14" y1="14" x2="14" y2="28" />
+        </svg>
+      </div>
+      <p class="dress-note">
+        Damas: les pedimos omitir vestidos en color blanco y rojo.<br><br>
+        Caballeros: les solicitamos evitar trajes en color beige.
+      </p>
+    </section>
+
+    <!-- RECOMENDACIONES -->
+    <section>
+      <span class="section-title">Recomendaciones</span>
+      <div class="rec-item">
+        <div class="rec-dot"></div>
+        <div class="rec-text"><strong>Puntualidad</strong>Agradecemos enormemente su llegada a la hora indicada para
+          poder iniciar juntos este momento tan especial.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-dot"></div>
+        <div class="rec-text"><strong>Evento para adultos</strong>Este será un evento únicamente para adultos. Les
+          pedimos con cariño dejar a los pequeños en casa.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-dot"></div>
+        <div class="rec-text"><strong>Invitaciones Intransferibles</strong>Hemos preparado este evento con mucho
+          cuidado, por lo que cada invitación es personal. Agradecemos respetar la lista de invitados y no extender la
+          invitación.</div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-dot"></div>
+        <div class="rec-text"><strong>Confirmación de asistencia</strong>Nos encantaría contar con su presencia.
+          Les pedimos confirmar su asistencia a más tardar el <span
+            style="text-decoration:underline;text-underline-offset:4px;">10 de junio de 2026</span>. Si no recibimos
+          respuesta en ese
+          tiempo, asumiremos que no podrán acompañarnos y liberaremos su lugar.</div>
+      </div>
+    </section>
+
+    <!-- REGALOS -->
+    <section class="gift-section">
+      <div class="section-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A9E7A" stroke-width="1.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 12 20 22 4 22 4 12" />
+          <rect x="2" y="7" width="20" height="5" />
+          <line x1="12" y1="22" x2="12" y2="7" />
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+        </svg>
+      </div>
+      <span class="section-title">Mesa de Regalos</span>
+      <p
+        style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:#666;text-align:center;line-height:1.8;margin-bottom:20px;">
+        Tu presencia es el mejor regalo. Si deseas hacernos un presente, hemos seleccionado algunas opciones.
+      </p>
+      <div class="gift-links">
+        <a href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/52002039" target="_blank"
+          class="gift-link">Liverpool →</a>
+      </div>
+      <div class="gift-links">
+        <a href="https://www.amazon.com.mx/wedding/guest-view/3DWIQERCNIV3V" target="_blank" class="gift-link">Amazon
+          →</a>
+      </div>
+      <div class="bank-info">
+        <p><strong>O bien, si prefieren un detalle más personal, dejamos a su disposición nuestra cuenta
+            bancaria</strong><br>
+          Banco: BBVA<br>CLABE: 015551203709<br>Titular: Natalia Martos</p>
+      </div>
+    </section>
+
+    <!-- CONFIRMACIÓN -->
+    <div class="confirm-section">
+      <div class="section-icon" style="color:rgba(240,235,224,0.5)">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      </div>
+      <span class="section-title">Confirmación</span>
+      <p>Agradecemos confirmes tu asistencia<br>antes del <strong
+          style="font-style:normal;color:#f0ebe0;text-decoration:underline;text-underline-offset:4px;">10 de junio
+          de 2026</strong></p>
+      <a href="confirmar.html" class="btn">Confirmar aquí</a>
+    </div>
+
+    <!-- CIERRE -->
+    <div class="closing">
+      <span class="script">¡Muchas Gracias!</span>
+      <p>Tu presencia es el mejor regalo que podemos recibir. Esperamos compartir contigo este inicio de nuestra nueva
+        historia.</p>
+      <div class="closing-line"></div>
+      <span class="closing-date">17 · 10 · 2026</span>
+    </div>
+
+  </div>
+</body>
+
+</html>
