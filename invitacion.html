@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Natalia & Daniel – 17.10.2026</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400&display=swap"
     rel="stylesheet">
   <style>
     *,
@@ -48,8 +48,8 @@
         padding: 60px 28px 50px;
       }
 
-      .cover .script {
-        font-size: 52px;
+      .cover .script-name {
+        font-size: 42px;
       }
 
       .cover .phrase {
@@ -94,66 +94,115 @@
       border: 1px solid #e0dbd0;
     }
 
-    /* ── PORTADA ── */
-    .cover {
-      background: linear-gradient(170deg, #8A9E7A 0%, #7B8E6B 100%);
-      padding: 80px 40px 70px;
-      text-align: center;
+    /* ── MARCO DORADO ── */
+    .gold-frame {
       position: relative;
     }
 
-    .cover::before {
+    .gold-frame::before {
       content: '';
       position: absolute;
-      inset: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      border: 1px solid #9e8241;
       pointer-events: none;
+      z-index: 0;
     }
 
-    .cover .ornament-top {
-      width: 100%;
-      max-width: 280px;
-      margin: 0 auto 20px;
-      opacity: 0.85;
+    /* ── PORTADA ── */
+    .cover {
+      background: #faf8f4;
+      padding: 80px 30px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid #ddd8ce;
     }
 
-    .cover .script {
-      font-family: 'Great Vibes', cursive;
-      color: #f0ebe0;
-      font-size: 66px;
-      line-height: 1.15;
+    .cover .initials {
+      font-family: 'Pinyon Script', cursive;
+      color: #9e8241;
+      font-size: 46px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover .initials span:last-child {
+      transform: translateY(18px);
+    }
+
+    .cover .script-name {
+      font-family: 'Pinyon Script', cursive;
+      color: #9e8241;
+      font-size: 48px;
+      line-height: 1.2;
       display: block;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .cover .phrase {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 17px;
-      letter-spacing: 0.5px;
-      line-height: 1.8;
-      color: rgba(240, 235, 224, 0.75);
-      display: block;
-      margin: 28px auto 0;
-      max-width: 300px;
+      position: relative;
+      z-index: 1;
     }
 
     .cover .amp {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      color: rgba(240, 235, 224, 0.5);
-      font-size: 30px;
+      color: #9e8241;
+      font-size: 34px;
       display: block;
-      margin: 6px 0;
+      margin: 10px 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .cover .date {
+    .cover .phrase-caps {
       font-family: 'Cormorant Garamond', serif;
-      color: rgba(240, 235, 224, 0.7);
-      font-size: 14px;
-      letter-spacing: 6px;
-      margin-top: 28px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      line-height: 1.8;
+      color: #7a6839;
       display: block;
+      margin: 40px auto;
+      text-transform: uppercase;
+      max-width: 330px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover .day-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 8px;
+      color: #9e8241;
+      display: block;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover .date-line-img {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 6px;
+      color: #9e8241;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover .date-line-img .separator {
+      color: #cbb47e;
+      font-weight: 300;
     }
 
     /* ── FOTO (removida) ── */
@@ -187,12 +236,12 @@
     .section-icon {
       text-align: center;
       margin-bottom: 14px;
-      color: #8A9E7A
+      color: #9e8241
     }
 
     .section-title {
-      font-family: 'Great Vibes', cursive;
-      color: #7B8E6B;
+      font-family: 'Pinyon Script', cursive;
+      color: #9e8241;
       font-size: 38px;
       text-align: center;
       display: block;
@@ -222,7 +271,7 @@
     .value.big {
       font-size: 28px;
       font-weight: 500;
-      color: #8A9E7A
+      color: #9e8241
     }
 
     .place-italic {
@@ -251,24 +300,15 @@
 
     /* ── CALENDARIO ── */
     .calendar-section {
-      background: linear-gradient(170deg, #8A9E7A, #7B8E6B);
+      background: #f0ebe0;
       padding: 40px 36px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid #ddd8ce;
     }
 
-    .calendar-section::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('images/floral_corner.png');
-      background-size: 50%;
-      background-repeat: no-repeat;
-      background-position: bottom right;
-      opacity: 0.35;
-      pointer-events: none;
-    }
+
 
     .calendar-section>* {
       position: relative;
@@ -280,7 +320,7 @@
       font-weight: 300;
       letter-spacing: 5px;
       font-size: 11px;
-      color: rgba(240, 235, 224, 0.55);
+      color: #999;
       text-transform: uppercase;
       margin-bottom: 18px;
       display: block;
@@ -298,7 +338,7 @@
       font-family: 'Jost', sans-serif;
       font-weight: 300;
       font-size: 10px;
-      color: rgba(240, 235, 224, 0.35);
+      color: #999;
       text-align: center;
       padding: 4px 0;
       letter-spacing: 1px;
@@ -307,13 +347,13 @@
     .cal-day {
       font-family: 'Cormorant Garamond', serif;
       font-size: 13px;
-      color: rgba(240, 235, 224, 0.6);
+      color: #3b3b3b;
       text-align: center;
       padding: 5px 2px;
     }
 
     .cal-day .highlight {
-      background: rgba(255, 255, 255, 0.12);
+      background: #9e8241;
       color: #f0ebe0;
       font-weight: 500;
       font-size: 15px;
@@ -324,7 +364,7 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto;
-      border: 1px solid rgba(240, 235, 224, 0.35);
+      border: 1px solid transparent;
     }
 
     .cal-year {
@@ -332,7 +372,7 @@
       font-weight: 300;
       letter-spacing: 8px;
       font-size: 11px;
-      color: rgba(240, 235, 224, 0.35);
+      color: #999;
       margin-top: 18px;
       display: block;
     }
@@ -374,8 +414,8 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #8A9E7A;
-      border: 1.5px solid #8A9E7A;
+      background: #9e8241;
+      border: 1.5px solid #9e8241;
     }
 
     .tl-time {
@@ -422,52 +462,38 @@
 
     /* ── CONFIRMACIÓN ── */
     .confirm-section {
-      background: linear-gradient(170deg, #8A9E7A, #7B8E6B);
+      background: #faf8f4;
       padding: 44px 36px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid #ddd8ce;
     }
 
-    .confirm-section::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('images/floral_corner.png');
-      background-size: 55%;
-      background-repeat: no-repeat;
-      background-position: bottom right;
-      opacity: 0.3;
-      transform: scaleX(-1);
-      pointer-events: none;
-    }
+
 
     .confirm-section>* {
       position: relative;
       z-index: 1;
     }
 
-    .confirm-section .section-title {
-      color: #f0ebe0
-    }
-
     .confirm-section .label {
-      color: rgba(240, 235, 224, 0.5)
+      color: #999;
     }
 
     .confirm-section p {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 16px;
-      color: rgba(240, 235, 224, 0.75);
+      color: #555;
       line-height: 1.8;
       margin-bottom: 26px;
     }
 
     .btn {
       display: inline-block;
-      border: 1px solid rgba(201, 168, 76, 0.6);
-      color: #f0ebe0;
+      border: 1px solid #c5bfb0;
+      color: #9e8241;
       font-family: 'Jost', sans-serif;
       font-weight: 300;
       font-size: 11px;
@@ -479,7 +505,8 @@
     }
 
     .btn:hover {
-      background: rgba(255, 255, 255, 0.1)
+      background: #e8e2d5;
+      color: #9e8241;
     }
 
     /* ── RECOMENDACIONES ── */
@@ -497,7 +524,7 @@
     .rec-dot {
       width: 6px;
       height: 6px;
-      background: #8A9E7A;
+      background: #9e8241;
       border-radius: 50%;
       flex-shrink: 0;
       margin-top: 8px
@@ -512,7 +539,7 @@
 
     .rec-text strong {
       font-weight: 500;
-      color: #7B8E6B;
+      color: #9e8241;
       display: block;
       font-size: 12px;
       font-family: 'Jost', sans-serif;
@@ -542,7 +569,7 @@
       font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #8A9E7A;
+      color: #9e8241;
       text-decoration: none;
       text-align: center;
       transition: background 0.3s;
@@ -556,7 +583,7 @@
       margin-top: 20px;
       padding: 18px;
       background: #faf8f4;
-      border-left: 3px solid #8A9E7A;
+      border-left: 3px solid #9e8241;
     }
 
     .bank-info p {
@@ -571,29 +598,19 @@
       font-weight: 400;
       font-size: 12px;
       letter-spacing: 1px;
-      color: #7B8E6B
+      color: #9e8241
     }
 
     /* ── CIERRE ── */
     .closing {
-      background: linear-gradient(170deg, #8A9E7A, #7B8E6B);
+      background: #f0ebe0;
       padding: 80px 36px 70px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .closing::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('images/floral_corner.png');
-      background-size: 55%;
-      background-repeat: no-repeat;
-      background-position: bottom right;
-      opacity: 0.3;
-      pointer-events: none;
-    }
+
 
     .closing>* {
       position: relative;
@@ -601,8 +618,8 @@
     }
 
     .closing .script {
-      font-family: 'Great Vibes', cursive;
-      color: #f0ebe0;
+      font-family: 'Pinyon Script', cursive;
+      color: #9e8241;
       font-size: 58px;
       display: block;
       margin-bottom: 22px;
@@ -613,7 +630,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 15px;
-      color: rgba(240, 235, 224, 0.65);
+      color: #555;
       line-height: 1.9;
       max-width: 300px;
       margin: 0 auto;
@@ -622,7 +639,7 @@
     .closing-line {
       width: 40px;
       height: 1px;
-      background: rgba(240, 235, 224, 0.25);
+      background: #c5bfb0;
       margin: 28px auto 20px
     }
 
@@ -631,14 +648,24 @@
       font-weight: 500;
       font-size: 18px;
       letter-spacing: 6px;
-      color: rgba(240, 235, 224, 0.75);
+      color: #9e8241;
     }
 
     /* ── LUGARES ── */
     .venue-card {
+      background: #f0ebe0;
       text-align: center;
-      padding: 36px 36px 32px;
+      padding: 44px 36px;
       border-bottom: 1px solid #ddd8ce;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+
+    .venue-card>* {
+      position: relative;
+      z-index: 1;
     }
 
     .venue-card .venue-label {
@@ -654,7 +681,7 @@
 
     .venue-card .venue-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 500;
       color: #3b3b3b;
       display: block;
@@ -664,18 +691,18 @@
     .venue-card .venue-time {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 15px;
+      font-size: 16px;
       color: #888;
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .map-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid #8A9E7A;
-      color: #7B8E6B;
+      border: 1px solid #c5bfb0;
+      color: #9e8241;
       font-family: 'Jost', sans-serif;
       font-weight: 300;
       font-size: 11px;
@@ -688,8 +715,8 @@
     }
 
     .map-btn:hover {
-      background: #8A9E7A;
-      color: #f0ebe0;
+      background: #e8e2d5;
+      color: #9e8241;
     }
 
     .map-btn svg {
@@ -702,13 +729,27 @@
   <div class="card">
 
     <!-- PORTADA -->
-    <div class="cover">
-      <span class="script">Natalia</span>
+    <div class="cover gold-frame">
+      <div class="initials">
+        <span>D</span><span>N</span>
+      </div>
+
+      <span class="script-name">Daniel Villarreal</span>
       <span class="amp">&amp;</span>
-      <span class="script">Daniel</span>
-      <span class="phrase">Nos complace invitarles a la celebración de nuestro matrimonio que se llevará a cabo el
-        día</span>
-      <span class="date">17 · 10 · 2026</span>
+      <span class="script-name">Natalia Martos</span>
+
+      <span class="phrase-caps">Tu presencia es el mejor regalo que podemos recibir. Esperamos compartir con ustedes
+        este inicio de nuestra nueva historia.</span>
+
+      <span class="day-text">Sábado</span>
+
+      <div class="date-line-img">
+        <span>17</span>
+        <span class="separator">|</span>
+        <span>OCTUBRE</span>
+        <span class="separator">|</span>
+        <span>2026</span>
+      </div>
     </div>
 
 
@@ -719,7 +760,7 @@
 
       <span class="venue-label">Ceremonia Religiosa</span>
       <span class="venue-name">Bethel Norte</span>
-      <span class="venue-time">4:00 pm</span>
+      <span class="venue-time"></span>
       <a href="https://maps.app.goo.gl/d1ADF8Yd9kX6BY6KA" target="_blank" class="map-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
@@ -729,11 +770,11 @@
         Ver ubicación
       </a>
 
-      <div style="width:50px;height:1px;background:#c5bfb0;margin:28px auto"></div>
+      <div style="width:50px;height:1px;background:rgba(240, 235, 224, 0.3);margin:28px auto"></div>
 
       <span class="venue-label">Recepción</span>
       <span class="venue-name">Real del Arenal</span>
-      <span class="venue-time">A continuación de la ceremonia</span>
+      <span class="venue-time"></span>
       <a href="https://maps.app.goo.gl/buqfF3Ly8pxm4sg6A" target="_blank" class="map-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
@@ -745,7 +786,7 @@
     </section>
 
     <!-- ITINERARIO -->
-    <section>
+    <section class="gold-frame">
       <span class="section-title">Itinerario</span>
       <ul class="timeline">
         <li>
@@ -829,13 +870,13 @@
       <span class="section-title">Código de Vestimenta</span>
       <span class="value big">Elegante · Formal</span>
       <div class="dress-icon">
-        <svg width="28" height="52" viewBox="0 0 28 52" fill="none" stroke="#8A9E7A" stroke-width="1.2"
+        <svg width="28" height="52" viewBox="0 0 28 52" fill="none" stroke="#9e8241" stroke-width="1.2"
           stroke-linecap="round">
           <ellipse cx="14" cy="7" rx="5" ry="5" />
           <path d="M8 13 C4 16 2 22 2 28 L6 28 L6 50 L22 50 L22 28 L26 28 C26 22 24 16 20 13" />
           <path d="M8 13 L6 20 L14 18 L22 20 L20 13" />
         </svg>
-        <svg width="24" height="52" viewBox="0 0 24 52" fill="none" stroke="#8A9E7A" stroke-width="1.2"
+        <svg width="24" height="52" viewBox="0 0 24 52" fill="none" stroke="#9e8241" stroke-width="1.2"
           stroke-linecap="round">
           <ellipse cx="12" cy="7" rx="5" ry="5" />
           <path d="M6 13 C3 15 2 18 2 22 L2 32 L6 32 L6 50 L18 50 L18 32 L22 32 L22 22 C22 18 21 15 18 13" />
@@ -850,7 +891,7 @@
     </section>
 
     <!-- RECOMENDACIONES -->
-    <section>
+    <section class="gold-frame">
       <span class="section-title">Recomendaciones</span>
       <div class="rec-item">
         <div class="rec-dot"></div>
@@ -865,8 +906,7 @@
       <div class="rec-item">
         <div class="rec-dot"></div>
         <div class="rec-text"><strong>Confirmación de asistencia</strong>Nos encantaría contar con su presencia.
-          Les pedimos confirmar su asistencia a más tardar el <span
-            style="text-decoration:underline;text-underline-offset:4px;">10 de junio de 2026</span>. Si no recibimos
+          Les pedimos confirmar su asistencia ya que si no se recibe
           respuesta en ese
           tiempo, asumiremos que no podrán acompañarnos y liberaremos su lugar.</div>
       </div>
@@ -875,7 +915,7 @@
     <!-- REGALOS -->
     <section class="gift-section">
       <div class="section-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8A9E7A" stroke-width="1.2"
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9e8241" stroke-width="1.2"
           stroke-linecap="round" stroke-linejoin="round">
           <polyline points="20 12 20 22 4 22 4 12" />
           <rect x="2" y="7" width="20" height="5" />
@@ -905,8 +945,8 @@
     </section>
 
     <!-- CONFIRMACIÓN -->
-    <div class="confirm-section">
-      <div class="section-icon" style="color:rgba(240,235,224,0.5)">
+    <div class="confirm-section gold-frame">
+      <div class="section-icon" style="color:#9e8241">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"
           stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -917,19 +957,12 @@
       </div>
       <span class="section-title">Confirmación</span>
       <p>Agradecemos confirmes tu asistencia<br>antes del <strong
-          style="font-style:normal;color:#f0ebe0;text-decoration:underline;text-underline-offset:4px;">10 de junio
+          style="font-style:normal;color:#555;text-decoration:underline;text-underline-offset:4px;">10 de junio
           de 2026</strong></p>
       <a href="confirmar.html" class="btn">Confirmar aquí</a>
     </div>
 
-    <!-- CIERRE -->
-    <div class="closing">
-      <span class="script">¡Muchas Gracias!</span>
-      <p>Tu presencia es el mejor regalo que podemos recibir. Esperamos compartir contigo este inicio de nuestra nueva
-        historia.</p>
-      <div class="closing-line"></div>
-      <span class="closing-date">17 · 10 · 2026</span>
-    </div>
+
 
   </div>
 </body>
