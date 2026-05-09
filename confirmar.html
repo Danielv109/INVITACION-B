@@ -747,7 +747,9 @@
 
       <!-- Submit -->
       <button class="submit-btn" id="submitBtn" style="display:none" disabled>Enviar Confirmación</button>
-      <a href="invitacion.html" style="display:block;text-align:center;margin-top:20px;font-family:'Jost',sans-serif;font-weight:300;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8A9E7A;text-decoration:none;border-bottom:1px solid #8A9E7A;padding-bottom:2px;width:fit-content;margin-left:auto;margin-right:auto;">← Volver a la invitación</a>
+      <a href="invitacion.html"
+        style="display:block;text-align:center;margin-top:20px;font-family:'Jost',sans-serif;font-weight:300;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8A9E7A;text-decoration:none;border-bottom:1px solid #8A9E7A;padding-bottom:2px;width:fit-content;margin-left:auto;margin-right:auto;">←
+        Volver a la invitación</a>
     </div>
 
     <!-- Success -->
@@ -816,7 +818,6 @@
 
       { nombre: "Juan Manuel Medina", grupo: "g12" },
       { nombre: "Paula A. Arias", grupo: "g12" },
-      { nombre: "Ana Sarahí Medina", grupo: "g12" },
 
       { nombre: "Natalia Medina", grupo: "g13" },
       { nombre: "Timoteo", grupo: "g13" },
@@ -923,6 +924,7 @@
       // INDIVIDUALES
       // ══════════════════════════════════
       { nombre: "Bernardo Forester" },
+      { nombre: "Ana Sarahí Medina" },
       { nombre: "Sebastián A. de Ávila" },
       { nombre: "Fernando Barajas" },
       { nombre: "Marcos Velázquez" },
@@ -1067,7 +1069,7 @@
 
       // Only show the EXACT name they clicked
       ncName.textContent = inv.nombre;
-      
+
       nameConfirm.classList.add('show');
     }
 
